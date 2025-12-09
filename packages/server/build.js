@@ -33,7 +33,7 @@ async function build() {
         'pino',
         'pino-pretty',
         // Shared package
-        '@memorizer/shared',
+        '@leon4s4/memorizer-shared',
       ],
       minify: true,
       sourcemap: true,

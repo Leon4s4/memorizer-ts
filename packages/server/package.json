@@ -1,5 +1,5 @@
 {
-  "name": "@memorizer/server",
+  "name": "@leon4s4/memorizer-server",
   "version": "2.0.0",
   "description": "Airgapped AI memory service with embedded models - semantic search, versioning, MCP integration",
   "keywords": [
@@ -51,7 +51,7 @@
   "author": "Leon4s4",
   "license": "MIT",
   "dependencies": {
-    "@memorizer/shared": "^2.0.0",
+    "@leon4s4/memorizer-shared": "^2.0.0",
     "fastify": "^5.2.0",
     "@fastify/static": "^8.0.2",
     "@fastify/cors": "^10.0.1",
