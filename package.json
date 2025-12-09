@@ -1,0 +1,30 @@
+{
+  "name": "@memorizer/root",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Airgapped AI memory service with embedded models",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "download-models": "tsx scripts/download-models.ts"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.3",
+    "typescript": "^5.6.3",
+    "@types/node": "^22.10.2",
+    "prettier": "^3.4.2",
+    "eslint": "^9.16.0",
+    "tsx": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "packageManager": "npm@10.9.2"
+}
