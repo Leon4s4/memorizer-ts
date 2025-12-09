@@ -25,7 +25,8 @@
   "types": "./dist/server.d.ts",
   "files": [
     "dist",
-    "scripts/postinstall.js",
+    "models",
+    "scripts/postinstall-bundled.js",
     "README.md",
     "LICENSE"
   ],
@@ -33,7 +34,7 @@
     "build": "tsc && node build.js",
     "dev": "tsx watch src/cli.ts start --port 5000",
     "start": "node dist/cli.js",
-    "postinstall": "node scripts/postinstall.js",
+    "postinstall": "node scripts/postinstall-bundled.js",
     "prepublishOnly": "npm run build",
     "lint": "eslint src",
     "test": "vitest run --passWithNoTests",

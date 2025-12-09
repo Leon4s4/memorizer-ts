@@ -1,0 +1,18 @@
+# Git LFS configuration for large model files
+
+# GGUF models (LLM)
+*.gguf filter=lfs diff=lfs merge=lfs -text
+
+# SafeTensors models (Transformers)
+*.safetensors filter=lfs diff=lfs merge=lfs -text
+
+# ONNX models
+*.onnx filter=lfs diff=lfs merge=lfs -text
+
+# Pickle files (ML models)
+*.pkl filter=lfs diff=lfs merge=lfs -text
+*.bin filter=lfs diff=lfs merge=lfs -text
+
+# Model weights
+*.pth filter=lfs diff=lfs merge=lfs -text
+*.h5 filter=lfs diff=lfs merge=lfs -text

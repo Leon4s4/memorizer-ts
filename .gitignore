@@ -40,7 +40,7 @@ coverage/
 # Memorizer data
 .memorizer/
 data/
-models/
+# Note: packages/server/models/ contains bundled models and should be committed
 
 # Temporary
 .cache/
