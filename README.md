@@ -41,8 +41,14 @@ For completely offline/airgapped machines (no internet required):
 
 **2. Transfer to your machine and install:**
 ```bash
-npm install ./leon4s4-memorizer-server-2.1.0.tgz
+# Skip optional dependencies (prevents sharp from downloading binaries)
+npm install --no-optional ./leon4s4-memorizer-server-2.1.0.tgz
+
+# Or with global install
+npm install --no-optional -g ./leon4s4-memorizer-server-2.1.0.tgz
 ```
+
+> **Important**: Use `--no-optional` flag to skip sharp (image processing library) which tries to download binaries. We only use text embeddings, so sharp is not needed.
 
 **3. Run:**
 ```bash
