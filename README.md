@@ -37,15 +37,15 @@ For completely offline/airgapped machines (no internet required):
 
 **1. Download the bundled package:**
 - Go to [Latest Release](https://github.com/Leon4s4/memorizer-ts/releases/latest)
-- Download `leon4s4-memorizer-server-2.1.0.tgz` (1.2GB - includes all models)
+- Download `leon4s4-memorizer-server-2.1.1.tgz` (1.2GB - includes all models)
 
 **2. Transfer to your machine and install:**
 ```bash
 # Skip optional dependencies (prevents sharp from downloading binaries)
-npm install --no-optional ./leon4s4-memorizer-server-2.1.0.tgz
+npm install --no-optional ./leon4s4-memorizer-server-2.1.1.tgz
 
 # Or with global install
-npm install --no-optional -g ./leon4s4-memorizer-server-2.1.0.tgz
+npm install --no-optional -g ./leon4s4-memorizer-server-2.1.1.tgz
 ```
 
 > **Important**: Use `--no-optional` flag to skip sharp (image processing library) which tries to download binaries. We only use text embeddings, so sharp is not needed.
