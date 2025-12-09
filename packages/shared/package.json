@@ -22,7 +22,6 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "lint": "eslint src",
     "clean": "rm -rf dist"
   },
   "devDependencies": {
