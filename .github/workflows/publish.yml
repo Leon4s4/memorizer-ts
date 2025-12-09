@@ -49,20 +49,34 @@ jobs:
           cd packages/shared
           npm publish --access public --provenance
 
-      - name: Publish @leon4s4/memorizer-server
+      - name: Build server tarball for GitHub Release
         run: |
           cd packages/server
-          npm publish --access public --provenance
+          npm pack
+          echo "TARBALL_PATH=packages/server/$(ls leon4s4-memorizer-server-*.tgz)" >> $GITHUB_ENV
+
+      - name: Note about server package
+        run: |
+          echo "⚠️  Server package (with bundled models) is too large for npm registry (1.2GB)" >> $GITHUB_STEP_SUMMARY
+          echo "📦 Tarball created for manual GitHub Release upload" >> $GITHUB_STEP_SUMMARY
+          echo "File: ${{ env.TARBALL_PATH }}" >> $GITHUB_STEP_SUMMARY
 
       - name: Create release summary
         run: |
           echo '## 📦 Published Packages' >> $GITHUB_STEP_SUMMARY
           echo '' >> $GITHUB_STEP_SUMMARY
-          echo '- @leon4s4/memorizer-shared@'$(node -p "require('./packages/shared/package.json').version") >> $GITHUB_STEP_SUMMARY
-          echo '- @leon4s4/memorizer-server@'$(node -p "require('./packages/server/package.json').version") >> $GITHUB_STEP_SUMMARY
+          echo '✅ @leon4s4/memorizer-shared@'$(node -p "require('./packages/shared/package.json').version")" (npm)" >> $GITHUB_STEP_SUMMARY
+          echo '📦 @leon4s4/memorizer-server@'$(node -p "require('./packages/server/package.json').version")" (GitHub Release - too large for npm)" >> $GITHUB_STEP_SUMMARY
           echo '' >> $GITHUB_STEP_SUMMARY
           echo '## 🚀 Installation' >> $GITHUB_STEP_SUMMARY
           echo '' >> $GITHUB_STEP_SUMMARY
+          echo '**Online (npm):**' >> $GITHUB_STEP_SUMMARY
           echo '```bash' >> $GITHUB_STEP_SUMMARY
-          echo 'npx @leon4s4/memorizer-server start' >> $GITHUB_STEP_SUMMARY
+          echo 'npx @leon4s4/memorizer-server@2.0.0 start  # Downloads models on first run' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo '' >> $GITHUB_STEP_SUMMARY
+          echo '**Airgapped (GitHub Release):**' >> $GITHUB_STEP_SUMMARY
+          echo 'Download leon4s4-memorizer-server-'$(node -p "require('./packages/server/package.json').version")'.tgz from GitHub Releases' >> $GITHUB_STEP_SUMMARY
+          echo '```bash' >> $GITHUB_STEP_SUMMARY
+          echo 'npm install ./leon4s4-memorizer-server-'$(node -p "require('./packages/server/package.json').version")'.tgz' >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
