@@ -1,70 +1,44 @@
 # Memorizer TypeScript - Airgapped AI Memory Service
 
-A fully self-contained AI-powered memory service with embedded models, designed to run completely offline after installation.
+A fully self-contained AI-powered memory service with embedded models, designed to run completely offline.
 
 ## Features
 
-- 🔒 **Fully Airgapped**: No internet calls after installation
-- 🧠 **Embedded AI Models**: Bundled nomic-embed-text (768D embeddings) + TinyLlama (1.1B LLM)
+- 🔒 **Fully Airgapped**: Works completely offline after installation
+- 🧠 **Embedded AI Model**: Bundled nomic-embed-text (768D embeddings, ~550MB)
 - 💾 **Self-Contained Database**: LanceDB embedded vector database
 - 🎨 **Modern UI**: React with light/dark theme support
 - 🔍 **Semantic Search**: Vector similarity search with metadata filtering
-- 📝 **Auto-Title Generation**: AI-powered title suggestions
+- 📝 **Auto-Title Generation**: Smart text-based title suggestions
 - 🕒 **Full Versioning**: Complete audit trail with diff support
 - 🔗 **Knowledge Graph**: Memory relationships and connections
 - 🤖 **MCP Integration**: Model Context Protocol server for AI agents
 
-## Quick Start
+## Installation
 
-### Option 1: Online Installation (npm)
+### Simple Installation (All Platforms)
 
-For machines with internet access:
+**Single command - works on both online and airgapped machines:**
 
 ```bash
-# Install and run HTTP server + Web UI
-npx @leon4s4/memorizer-server start
-
-# Or install globally
+# Install globally
 npm install -g @leon4s4/memorizer-server
+
+# Run
 memorizer start
 ```
 
-On first run, models (~920MB) will be downloaded to `~/.memorizer/models/`.
+✅ **That's it!** No model downloads, no certificate errors, no complex steps.
 
-### Option 2: Airgapped Installation (GitHub Release)
+The package (~550MB) includes the nomic-embed-text model bundled inside. On airgapped machines, just transfer the package file and run `npm install -g ./leon4s4-memorizer-server-3.0.0.tgz`.
 
-For completely offline/airgapped machines (no internet required):
+### What's Changed in v3.0.0
 
-**1. Download the bundled package:**
-- Go to [Latest Release](https://github.com/Leon4s4/memorizer-ts/releases/latest)
-- Download `leon4s4-memorizer-server-2.1.5.tgz` (1.2GB - includes all models)
-
-**2. Transfer to your machine and install:**
-
-**Windows (Easiest)**:
-```cmd
-REM Extract and run the installer script
-tar -xf leon4s4-memorizer-server-2.1.5.tgz
-package\install-windows.bat package.tgz
-```
-
-**Mac/Linux or Manual Windows**:
-```bash
-# Install without scripts, then run model setup manually
-npm install --ignore-scripts -g ./leon4s4-memorizer-server-2.1.5.tgz
-node "$(npm root -g)/@leon4s4/memorizer-server/scripts/postinstall-bundled.js"
-```
-
-> **Why these steps?** The `--ignore-scripts` flag prevents sharp (image processing library) from trying to download binaries. We then manually run our script to copy the bundled models.
-
-**3. Run:**
-```bash
-memorizer start
-```
-
-✅ **Works completely offline** - no downloads, no certificate errors!
-
-> **Note**: npm has a package size limit, so versions with bundled models (2.1.0+) are distributed via GitHub Releases instead of npm registry.
+- **Bundled Model**: nomic-embed-text embedding model is now included in the npm package
+- **Simplified Installation**: Single command works everywhere (no more manual model setup)
+- **Lite Title Generation**: Uses smart text truncation instead of LLM (faster, no AI model needed)
+- **Package Size**: ~550MB total (under npm's 1GB limit)
+- **No Downloads**: Everything works completely offline after installation
 
 ## MCP Server Setup
 
@@ -306,8 +280,8 @@ MEMORIZER_MODEL_PATH=~/.memorizer/models
 
 - **Embedding generation**: <100ms per 512 tokens
 - **Vector search**: <50ms for 10k memories
-- **Title generation**: <10s per memory
-- **Memory footprint**: ~2GB (models + runtime)
+- **Title generation**: <1ms per memory (text-based)
+- **Memory footprint**: ~1GB (model + runtime)
 
 ## Migration from v1 (.NET/PostgreSQL)
 
@@ -322,5 +296,4 @@ MIT
 Built with:
 - [LanceDB](https://lancedb.com/) - Embedded vector database
 - [Transformers.js](https://huggingface.co/docs/transformers.js) - ML models in JS
-- [node-llama-cpp](https://withcatai.github.io/node-llama-cpp/) - LLM inference
 - [Model Context Protocol](https://modelcontextprotocol.io/) - AI agent integration
