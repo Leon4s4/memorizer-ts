@@ -46,3 +46,4 @@ data/
 .cache/
 temp/
 tmp/
+*.tgz

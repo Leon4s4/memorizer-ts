@@ -16,6 +16,10 @@ A fully self-contained AI-powered memory service with embedded models, designed 
 
 ## Quick Start
 
+### Option 1: Online Installation (npm)
+
+For machines with internet access:
+
 ```bash
 # Install and run HTTP server + Web UI
 npx @leon4s4/memorizer-server start
@@ -26,6 +30,28 @@ memorizer start
 ```
 
 On first run, models (~920MB) will be downloaded to `~/.memorizer/models/`.
+
+### Option 2: Airgapped Installation (GitHub Release)
+
+For completely offline/airgapped machines (no internet required):
+
+**1. Download the bundled package:**
+- Go to [Latest Release](https://github.com/Leon4s4/memorizer-ts/releases/latest)
+- Download `leon4s4-memorizer-server-2.1.0.tgz` (1.2GB - includes all models)
+
+**2. Transfer to your machine and install:**
+```bash
+npm install ./leon4s4-memorizer-server-2.1.0.tgz
+```
+
+**3. Run:**
+```bash
+npx memorizer start
+```
+
+✅ **Works completely offline** - no downloads, no certificate errors!
+
+> **Note**: npm has a package size limit, so versions with bundled models (2.1.0+) are distributed via GitHub Releases instead of npm registry.
 
 ## MCP Server Setup
 
