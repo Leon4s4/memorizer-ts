@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import type { Memory } from '@memorizer/shared';
+import type { Memory } from '@leon4s4/memorizer-shared';
 
 export function Index() {
   const [memories, setMemories] = useState<Memory[]>([]);

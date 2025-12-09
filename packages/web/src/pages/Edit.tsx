@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import type { Memory } from '@memorizer/shared';
+import type { Memory } from '@leon4s4/memorizer-shared';
 
 export function Edit() {
   const { id } = useParams<{ id: string }>();

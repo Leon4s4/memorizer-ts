@@ -17,8 +17,8 @@ import type {
   MemoryRelationship,
   RelationshipCreateInput,
   MemoryStats,
-} from '@memorizer/shared';
-import { MemoryEventType } from '@memorizer/shared';
+} from '@leon4s4/memorizer-shared';
+import { MemoryEventType } from '@leon4s4/memorizer-shared';
 
 @singleton()
 @injectable()

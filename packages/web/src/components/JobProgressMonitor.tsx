@@ -178,10 +178,10 @@ export function JobProgressMonitor({
       </div>
 
       {/* Result or Error */}
-      {progress.status === 'completed' && progress.result && (
+      {progress.status === 'completed' && progress.result !== undefined && (
         <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded text-sm">
           <strong>Result:</strong>{' '}
-          <pre className="inline">{JSON.stringify(progress.result, null, 2)}</pre>
+          <pre className="inline">{JSON.stringify(progress.result as Record<string, unknown>, null, 2)}</pre>
         </div>
       )}
 

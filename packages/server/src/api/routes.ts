@@ -14,7 +14,7 @@ import type {
   MemoryUpdateInput,
   SearchOptions,
   MemoryStats,
-} from '@memorizer/shared';
+} from '@leon4s4/memorizer-shared';
 
 interface CreateMemoryBody {
   type: string;

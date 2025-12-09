@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { MemoryVersion } from '@memorizer/shared';
+import type { MemoryVersion } from '@leon4s4/memorizer-shared';
 import { DiffViewer } from './DiffViewer';
 
 interface VersionHistoryProps {
@@ -33,7 +33,6 @@ export function VersionHistory({ memoryId }: VersionHistoryProps) {
   const [versions, setVersions] = useState<MemoryVersion[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedVersion, setSelectedVersion] = useState<string | null>(null);
   const [diffData, setDiffData] = useState<DiffResponse | null>(null);
   const [reverting, setReverting] = useState(false);
 
@@ -58,7 +57,6 @@ export function VersionHistory({ memoryId }: VersionHistoryProps) {
 
   const viewDiff = async (versionId: string) => {
     try {
-      setSelectedVersion(versionId);
       const response = await fetch(`/api/memories/${memoryId}/diff?from_version=${versionId}`);
       if (!response.ok) throw new Error('Failed to fetch diff');
 
@@ -96,7 +94,6 @@ export function VersionHistory({ memoryId }: VersionHistoryProps) {
   };
 
   const closeDiff = () => {
-    setSelectedVersion(null);
     setDiffData(null);
   };
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { MemoryStats } from '@memorizer/shared';
+import type { MemoryStats } from '@leon4s4/memorizer-shared';
 
 export function Stats() {
   const [stats, setStats] = useState<MemoryStats | null>(null);

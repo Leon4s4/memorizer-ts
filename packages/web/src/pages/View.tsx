@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import type { Memory } from '@memorizer/shared';
+import type { Memory } from '@leon4s4/memorizer-shared';
 import { VersionHistory } from '../components/VersionHistory';
 import { SimilarMemories } from '../components/SimilarMemories';
 import { RelationshipsList } from '../components/RelationshipsList';

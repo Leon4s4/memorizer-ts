@@ -1,7 +1,7 @@
 // @ts-nocheck - TODO: Fix API signature mismatches
 import type { Tool } from '@modelcontextprotocol/sdk/types.js';
 import { StorageService } from '../services/storage.js';
-import type { Memory } from '@memorizer/shared';
+import type { Memory } from '@leon4s4/memorizer-shared';
 
 /**
  * MCP Tools for Memory Operations

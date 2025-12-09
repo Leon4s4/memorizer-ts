@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import type { MemoryRelationship, Memory } from '@memorizer/shared';
+import type { MemoryRelationship, Memory } from '@leon4s4/memorizer-shared';
 
 interface RelationshipsListProps {
   memoryId: string;
