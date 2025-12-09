@@ -37,15 +37,25 @@ For completely offline/airgapped machines (no internet required):
 
 **1. Download the bundled package:**
 - Go to [Latest Release](https://github.com/Leon4s4/memorizer-ts/releases/latest)
-- Download `leon4s4-memorizer-server-2.1.4.tgz` (1.2GB - includes all models)
+- Download `leon4s4-memorizer-server-2.1.5.tgz` (1.2GB - includes all models)
 
 **2. Transfer to your machine and install:**
-```bash
-# Simple installation - no special flags needed!
-npm install -g ./leon4s4-memorizer-server-2.1.4.tgz
+
+**Windows (Easiest)**:
+```cmd
+REM Extract and run the installer script
+tar -xf leon4s4-memorizer-server-2.1.5.tgz
+package\install-windows.bat package.tgz
 ```
 
-> **What's New in v2.1.4**: We now bundle a stub sharp package that does nothing. This eliminates the need for `--ignore-scripts` or any workarounds. Just install normally!
+**Mac/Linux or Manual Windows**:
+```bash
+# Install without scripts, then run model setup manually
+npm install --ignore-scripts -g ./leon4s4-memorizer-server-2.1.5.tgz
+node "$(npm root -g)/@leon4s4/memorizer-server/scripts/postinstall-bundled.js"
+```
+
+> **Why these steps?** The `--ignore-scripts` flag prevents sharp (image processing library) from trying to download binaries. We then manually run our script to copy the bundled models.
 
 **3. Run:**
 ```bash

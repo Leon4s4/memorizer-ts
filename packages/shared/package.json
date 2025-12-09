@@ -1,6 +1,6 @@
 {
   "name": "@leon4s4/memorizer-shared",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Shared types and utilities for Memorizer",
   "type": "module",
   "main": "./dist/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@leon4s4/memorizer-server",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Airgapped AI memory service with embedded models - semantic search, versioning, MCP integration",
   "keywords": [
     "memory",
@@ -27,7 +27,7 @@
     "dist",
     "models",
     "scripts/postinstall-bundled.js",
-    "stubs",
+    "install-windows.bat",
     ".npmrc",
     "README.md",
     "LICENSE"
@@ -82,8 +82,5 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "overrides": {
-    "sharp": "file:./stubs/sharp-stub"
   }
 }
