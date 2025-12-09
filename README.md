@@ -37,22 +37,22 @@ For completely offline/airgapped machines (no internet required):
 
 **1. Download the bundled package:**
 - Go to [Latest Release](https://github.com/Leon4s4/memorizer-ts/releases/latest)
-- Download `leon4s4-memorizer-server-2.1.2.tgz` (1.2GB - includes all models)
+- Download `leon4s4-memorizer-server-2.1.3.tgz` (1.2GB - includes all models)
 
 **2. Transfer to your machine and install:**
 ```bash
-# Use --force to ignore sharp installation errors
-npm install --force -g ./leon4s4-memorizer-server-2.1.2.tgz
+# Skip ALL postinstall scripts (prevents sharp from downloading binaries)
+npm install --ignore-scripts -g ./leon4s4-memorizer-server-2.1.3.tgz
 
-# Or local install
-npm install --force ./leon4s4-memorizer-server-2.1.2.tgz
+# Manually run our model setup script (copies bundled models)
+node "$(npm root -g)/@leon4s4/memorizer-server/scripts/postinstall-bundled.js"
 ```
 
-> **Important**: The `--force` flag is required to bypass errors from the `sharp` package (image processing library used by transformers.js). Sharp tries to download platform-specific binaries during installation, which fails on airgapped machines. This is safe to ignore - we only use text embeddings, not image processing. The application will work perfectly without sharp.
+> **Important**: The `--ignore-scripts` flag prevents sharp from trying to download binaries. We then manually run our postinstall script to copy the bundled models to your system.
 
 **3. Run:**
 ```bash
-npx memorizer start
+memorizer start
 ```
 
 ✅ **Works completely offline** - no downloads, no certificate errors!
