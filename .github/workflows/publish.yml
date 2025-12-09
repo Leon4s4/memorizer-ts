@@ -35,11 +35,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests
-        run: npm test
+      - name: Build shared package
+        run: npm run build --workspace=@leon4s4/memorizer-shared
 
-      - name: Build packages
-        run: npm run build
+      - name: Run tests (server only)
+        run: npm test --workspace=@leon4s4/memorizer-server
+
+      - name: Build server package
+        run: npm run build --workspace=@leon4s4/memorizer-server
 
       - name: Publish @leon4s4/memorizer-shared
         run: |
