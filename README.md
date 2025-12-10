@@ -14,57 +14,46 @@ A fully self-contained AI-powered memory service with embedded models, designed 
 - 🔗 **Knowledge Graph**: Memory relationships and connections
 - 🤖 **MCP Integration**: Model Context Protocol server for AI agents
 
-## Quick Start
+## Installation
 
-### Option 1: Online Installation (npm)
-
-For machines with internet access:
-
-```bash
-# Install and run HTTP server + Web UI
-npx @leon4s4/memorizer-server start
-
-# Or install globally
-npm install -g @leon4s4/memorizer-server
-memorizer start
-```
-
-On first run, models (~920MB) will be downloaded to `~/.memorizer/models/`.
-
-### Option 2: Airgapped Installation (GitHub Release)
-
-For completely offline/airgapped machines (no internet required):
+**For airgapped Windows machines** - single command installation:
 
 **1. Download the bundled package:**
 - Go to [Latest Release](https://github.com/Leon4s4/memorizer-ts/releases/latest)
-- Download `leon4s4-memorizer-server-2.1.5.tgz` (~1.2GB - includes models + Windows binaries)
+- Download `leon4s4-memorizer-server-2.1.7.tgz` (~1.2GB - includes all models + Windows binaries)
 
-**2. Transfer to your machine and install:**
+**2. Transfer to your airgapped machine**
+
+**3. Install:**
 ```bash
-# Single command installation - no special flags needed!
-npm install -g ./leon4s4-memorizer-server-2.1.5.tgz
+npm install -g ./leon4s4-memorizer-server-2.1.7.tgz
 ```
 
-> **What's New in v2.1.5**: Pre-bundled Windows x64 binaries for sharp/libvips! The preinstall script automatically configures offline mode, preventing any network calls during installation. Works on completely airgapped machines with no certificate errors.
-
-**3. Run:**
+**4. Run:**
 ```bash
 memorizer start
 ```
 
-✅ **Works completely offline** - no downloads, no certificate errors!
+✅ **That's it!** No downloads, no certificate errors, no manual steps required.
 
-> **Note**: npm has a package size limit, so versions with bundled models (2.1.0+) are distributed via GitHub Releases instead of npm registry.
+### What's Included
+
+- **nomic-embed-text** (547MB) - 768D embeddings for semantic search
+- **TinyLlama 1.1B** (668MB) - AI-powered title generation
+- **Windows x64 binaries** (7.7MB) - Pre-bundled sharp/libvips
+- **Total size**: ~1.2GB
+- **Works completely offline** after installation
 
 ## MCP Server Setup
 
 Memorizer provides an MCP (Model Context Protocol) server for integration with Claude Desktop, Claude Code, and other MCP clients.
 
-### Option 1: Claude Code (CLI)
+### Claude Code (CLI)
 
 **1. Install the server globally:**
 ```bash
-npm install -g @leon4s4/memorizer-server
+# Download and install from GitHub Release (see Installation section above)
+npm install -g ./leon4s4-memorizer-server-2.1.7.tgz
 ```
 
 **2. Configure MCP in `~/.claude/settings.json`:**
