@@ -1,6 +1,6 @@
 {
   "name": "@leon4s4/memorizer-server",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "Airgapped AI memory service with embedded models - semantic search, versioning, MCP integration",
   "keywords": [
     "memory",
@@ -28,7 +28,7 @@
     "models",
     "prebuilds",
     "scripts/postinstall-bundled.js",
-    "scripts/setup-offline-install.js",
+    "scripts/setup-offline-install.cjs",
     ".npmrc",
     "README.md",
     "LICENSE"
@@ -37,7 +37,7 @@
     "build": "tsc && node build.js",
     "dev": "tsx watch src/cli.ts start --port 5000",
     "start": "node dist/cli.js",
-    "preinstall": "node scripts/setup-offline-install.js",
+    "preinstall": "node scripts/setup-offline-install.cjs",
     "postinstall": "node scripts/postinstall-bundled.js",
     "prepublishOnly": "npm run build",
     "lint": "eslint src",
