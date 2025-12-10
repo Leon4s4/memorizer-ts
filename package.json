@@ -1,6 +1,6 @@
 {
   "name": "@memorizer/root",
-  "version": "2.1.8",
+  "version": "2.2.1",
   "private": true,
   "description": "Airgapped AI memory service with embedded models",
   "workspaces": [

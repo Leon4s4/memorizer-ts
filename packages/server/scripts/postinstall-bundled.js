@@ -12,10 +12,10 @@ import { existsSync } from 'fs';
 import { homedir } from 'os';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const scriptDir = dirname(__filename);
 
 // Source: bundled models in package
-const PACKAGE_MODELS_DIR = join(__dirname, '..', 'models');
+const PACKAGE_MODELS_DIR = join(scriptDir, '..', 'models');
 
 // Destination: user's model directory
 const USER_MODEL_DIR = process.env.MEMORIZER_MODEL_PATH || join(homedir(), '.memorizer', 'models');
@@ -41,8 +41,8 @@ async function copyModelsIfNeeded() {
     // Verify sharp offline configuration
     console.log('🔧 Verifying offline mode for sharp...');
     try {
-      const { readFileSync } = await import('fs');
-      const npmrcPath = join(__dirname, '..', '.npmrc');
+      const { readFileSync } = require('fs');
+      const npmrcPath = join(scriptDir, '..', '.npmrc');
       const npmrcContent = readFileSync(npmrcPath, 'utf8');
       if (npmrcContent.includes('sharp_binary_host=https://localhost:1/noop')) {
         console.log('✓ Sharp is configured for offline mode (no downloads)\n');
