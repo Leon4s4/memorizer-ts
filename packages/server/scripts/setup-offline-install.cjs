@@ -11,7 +11,7 @@
  */
 
 const { join } = require('path');
-const { existsSync } = require('fs');
+const { existsSync, writeFileSync } = require('fs');
 const os = require('os');
 
 // Determine platform and architecture
@@ -23,38 +23,38 @@ console.log(`Platform: ${platform}-${arch}`);
 
 // Path to bundled prebuilds
 const prebuildsDir = join(__dirname, '..', 'prebuilds', `${platform}-${arch}`);
+const npmrcPath = join(__dirname, '..', '.npmrc');
 
-if (existsSync(prebuildsDir)) {
-  console.log(`✓ Found bundled binaries at: ${prebuildsDir}`);
+// Always configure offline mode to block remote downloads
+const npmrcContent = `# Offline installation settings - prevents sharp binary downloads
+# This ensures airgapped installations work without internet
 
-  // Set environment variables for sharp
-  // These tell sharp to use our bundled binaries instead of downloading
-  process.env.npm_config_sharp_libvips_local_prebuilds = prebuildsDir;
-  process.env.npm_config_sharp_local_prebuilds = prebuildsDir;
-  process.env.SHARP_IGNORE_GLOBAL_LIBVIPS = '1';
+# Block sharp from downloading binaries from GitHub/npm
+sharp_binary_host=https://localhost:1/noop
+sharp_libvips_binary_host=https://localhost:1/noop
+sharp_libvips_version=0.0.0
 
-  // Write to npmrc to persist these settings during install
-  const npmrcContent = `
-# Offline installation settings for sharp
-sharp_libvips_local_prebuilds=${prebuildsDir}
+# If bundled prebuilds exist, configure their location
+${existsSync(prebuildsDir) ? `sharp_libvips_local_prebuilds=${prebuildsDir}
 sharp_local_prebuilds=${prebuildsDir}
-sharp_ignore_global_libvips=1
+sharp_ignore_global_libvips=1` : '# No bundled prebuilds found for this platform'}
 `;
 
-  const { writeFileSync } = require('fs');
-  const npmrcPath = join(__dirname, '..', '.npmrc');
-
-  try {
-    writeFileSync(npmrcPath, npmrcContent, 'utf8');
-    console.log(`✓ Created .npmrc with offline settings`);
-  } catch (error) {
-    console.warn(`⚠️  Could not write .npmrc:`, error.message);
-    console.log(`⚠️  Sharp may attempt to download binaries`);
+try {
+  writeFileSync(npmrcPath, npmrcContent, 'utf8');
+  console.log(`✓ Created .npmrc with offline configuration`);
+  
+  if (existsSync(prebuildsDir)) {
+    console.log(`✓ Found bundled binaries at: ${prebuildsDir}`);
+    console.log(`✓ Sharp will use local prebuilds (no download)`);
+  } else {
+    console.log(`⚠️  No bundled prebuilds found for ${platform}-${arch}`);
+    console.log(`   Only Windows x64 prebuilds are included`);
+    console.log(`   Sharp will be blocked from downloading (offline mode active)`);
   }
-
-  console.log(`✅ Offline installation configured\n`);
-} else {
-  console.log(`⚠️  No bundled binaries found for ${platform}-${arch}`);
-  console.log(`   Sharp will attempt to download binaries during installation`);
-  console.log(`   (This requires internet connectivity)\n`);
+} catch (error) {
+  console.error(`❌ Could not configure .npmrc:`, error.message);
+  console.error(`   Installation may fail if sharp tries to download binaries`);
 }
+
+console.log(`✅ Offline installation setup complete\n`);

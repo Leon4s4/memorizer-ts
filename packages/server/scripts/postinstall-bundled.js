@@ -38,6 +38,19 @@ async function copyModelsIfNeeded() {
 `);
 
   try {
+    // Verify sharp offline configuration
+    console.log('🔧 Verifying offline mode for sharp...');
+    try {
+      const { readFileSync } = await import('fs');
+      const npmrcPath = join(__dirname, '..', '.npmrc');
+      const npmrcContent = readFileSync(npmrcPath, 'utf8');
+      if (npmrcContent.includes('sharp_binary_host=https://localhost:1/noop')) {
+        console.log('✓ Sharp is configured for offline mode (no downloads)\n');
+      }
+    } catch (err) {
+      console.warn('⚠️  Could not verify sharp configuration\n');
+    }
+
     // Create user model directory
     console.log('📁 Setting up model directories...\n');
     await ensureDirectoryExists(USER_MODEL_DIR);
