@@ -1,44 +1,60 @@
 # Memorizer TypeScript - Airgapped AI Memory Service
 
-A fully self-contained AI-powered memory service with embedded models, designed to run completely offline.
+A fully self-contained AI-powered memory service with embedded models, designed to run completely offline after installation.
 
 ## Features
 
-- 🔒 **Fully Airgapped**: Works completely offline after installation
-- 🧠 **Embedded AI Model**: Bundled nomic-embed-text (768D embeddings, ~550MB)
+- 🔒 **Fully Airgapped**: No internet calls after installation
+- 🧠 **Embedded AI Models**: Bundled nomic-embed-text (768D embeddings) + TinyLlama (1.1B LLM)
 - 💾 **Self-Contained Database**: LanceDB embedded vector database
 - 🎨 **Modern UI**: React with light/dark theme support
 - 🔍 **Semantic Search**: Vector similarity search with metadata filtering
-- 📝 **Auto-Title Generation**: Smart text-based title suggestions
+- 📝 **Auto-Title Generation**: AI-powered title suggestions
 - 🕒 **Full Versioning**: Complete audit trail with diff support
 - 🔗 **Knowledge Graph**: Memory relationships and connections
 - 🤖 **MCP Integration**: Model Context Protocol server for AI agents
 
-## Installation
+## Quick Start
 
-### Simple Installation (All Platforms)
+### Option 1: Online Installation (npm)
 
-**Single command - works on both online and airgapped machines:**
+For machines with internet access:
 
 ```bash
-# Install globally
-npm install -g @leon4s4/memorizer-server
+# Install and run HTTP server + Web UI
+npx @leon4s4/memorizer-server start
 
-# Run
+# Or install globally
+npm install -g @leon4s4/memorizer-server
 memorizer start
 ```
 
-✅ **That's it!** No model downloads, no certificate errors, no complex steps.
+On first run, models (~920MB) will be downloaded to `~/.memorizer/models/`.
 
-The package (~550MB) includes the nomic-embed-text model bundled inside. On airgapped machines, just transfer the package file and run `npm install -g ./leon4s4-memorizer-server-3.0.0.tgz`.
+### Option 2: Airgapped Installation (GitHub Release)
 
-### What's Changed in v3.0.0
+For completely offline/airgapped machines (no internet required):
 
-- **Bundled Model**: nomic-embed-text embedding model is now included in the npm package
-- **Simplified Installation**: Single command works everywhere (no more manual model setup)
-- **Lite Title Generation**: Uses smart text truncation instead of LLM (faster, no AI model needed)
-- **Package Size**: ~550MB total (under npm's 1GB limit)
-- **No Downloads**: Everything works completely offline after installation
+**1. Download the bundled package:**
+- Go to [Latest Release](https://github.com/Leon4s4/memorizer-ts/releases/latest)
+- Download `leon4s4-memorizer-server-2.1.5.tgz` (~1.2GB - includes models + Windows binaries)
+
+**2. Transfer to your machine and install:**
+```bash
+# Single command installation - no special flags needed!
+npm install -g ./leon4s4-memorizer-server-2.1.5.tgz
+```
+
+> **What's New in v2.1.5**: Pre-bundled Windows x64 binaries for sharp/libvips! The preinstall script automatically configures offline mode, preventing any network calls during installation. Works on completely airgapped machines with no certificate errors.
+
+**3. Run:**
+```bash
+memorizer start
+```
+
+✅ **Works completely offline** - no downloads, no certificate errors!
+
+> **Note**: npm has a package size limit, so versions with bundled models (2.1.0+) are distributed via GitHub Releases instead of npm registry.
 
 ## MCP Server Setup
 
@@ -280,8 +296,8 @@ MEMORIZER_MODEL_PATH=~/.memorizer/models
 
 - **Embedding generation**: <100ms per 512 tokens
 - **Vector search**: <50ms for 10k memories
-- **Title generation**: <1ms per memory (text-based)
-- **Memory footprint**: ~1GB (model + runtime)
+- **Title generation**: <10s per memory
+- **Memory footprint**: ~2GB (models + runtime)
 
 ## Migration from v1 (.NET/PostgreSQL)
 
@@ -296,4 +312,5 @@ MIT
 Built with:
 - [LanceDB](https://lancedb.com/) - Embedded vector database
 - [Transformers.js](https://huggingface.co/docs/transformers.js) - ML models in JS
+- [node-llama-cpp](https://withcatai.github.io/node-llama-cpp/) - LLM inference
 - [Model Context Protocol](https://modelcontextprotocol.io/) - AI agent integration
