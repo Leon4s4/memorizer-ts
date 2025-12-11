@@ -29,10 +29,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --no-save
 
       - name: Build shared package first
         run: npm run build --workspace=@leon4s4/memorizer-shared
