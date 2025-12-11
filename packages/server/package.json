@@ -67,7 +67,7 @@
     "commander": "^12.1.0",
     "fastify": "^5.2.0",
     "lru-cache": "^11.0.2",
-    "sharp": "npm:sharp-stub@file:stubs/sharp-stub",
+    "sharp": "0.32.6",
     "node-llama-cpp": "^3.2.0",
     "pino": "^9.6.0",
     "pino-pretty": "^13.0.0",
@@ -83,10 +83,7 @@
     "sharp"
   ],
   "overrides": {
-    "sharp": "npm:sharp-stub@file:stubs/sharp-stub",
-    "@xenova/transformers": {
-      "sharp": "npm:sharp-stub@file:stubs/sharp-stub"
-    }
+    "sharp": "0.32.6"
   },
   "devDependencies": {
     "@types/uuid": "^10.0.0",
