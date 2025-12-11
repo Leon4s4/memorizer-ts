@@ -1,5 +1,5 @@
 {
-  "name": "sharp",
+  "name": "sharp-stub",
   "version": "0.32.6",
   "description": "Stub package for sharp - does nothing, used to avoid binary downloads on airgapped machines",
   "main": "index.js"
